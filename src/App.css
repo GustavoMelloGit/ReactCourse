@@ -1,3 +1,7 @@
 .App {
   text-align: center;
 }
+#empty-expense {
+  color: white;
+  font-size: 2rem;
+}
