@@ -4,9 +4,11 @@ import styles from "./User.module.css";
 export default function User(props) {
   return (
     <li>
-      <span>
-        {props.name} ({props.year} years old)
-      </span>
+      <div className={styles.listContainer}>
+        <span className={styles.userInfo}>
+          {props.name} ({props.year} years old)
+        </span>
+      </div>
     </li>
   );
 }

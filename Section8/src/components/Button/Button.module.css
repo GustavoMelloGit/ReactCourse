@@ -10,3 +10,8 @@
     background-color: #c52891;
     transition: 0.2s;
 }
+@media (max-width: 340px) {
+    .button {
+        width: 100%;
+    }
+}

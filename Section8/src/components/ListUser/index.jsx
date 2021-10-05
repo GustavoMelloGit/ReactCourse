@@ -6,9 +6,11 @@ import styles from "./ListUser.module.css";
 export default function ListUser(props) {
   return (
     <Card>
-      {props.users.map((element) => (
-        <User name={element.name} year={element.year} />
-      ))}
+      <ul>
+        {props.users.map((element) => (
+          <User name={element.name} year={element.age} key={element.id} />
+        ))}
+      </ul>
     </Card>
   );
 }

@@ -3,8 +3,13 @@ import Button from "../Button";
 import Card from "../Card";
 import Input from "../Input";
 
-export default function Form() {
-  const [users, setUsers] = useState([{}]);
+const defaultUsersData = [
+  {
+    name: "",
+    age: 0,
+  },
+];
+export default function Form(props) {
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
 
@@ -16,6 +21,12 @@ export default function Form() {
   }
   function handleAddUser(e) {
     e.preventDefault();
+    const userInputData = {
+      name: name,
+      age: age,
+      id: Math.random() * 10,
+    };
+    props.saveAddedUser(userInputData);
   }
   return (
     <Card>
