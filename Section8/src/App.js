@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./App.module.css";
-import Card from "./components/Card";
+import Form from "./components/Form";
 
 function App() {
   return (
     <div className={styles.container}>
-      <Card />
+      <Form />
     </div>
   );
 }
