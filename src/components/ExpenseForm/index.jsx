@@ -29,7 +29,12 @@ const ExpenseForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    props.onSubmitForm(userInput);
+    const userInputData = {
+      title: userInput.title,
+      amount: userInput.amount,
+      date: new Date(userInput.date.replace(/-/g, "/").replace(/T.+/, "")),
+    };
+    props.onSubmitForm(userInputData);
     setUserInput(defaultUserInput);
   };
 
@@ -37,36 +42,30 @@ const ExpenseForm = (props) => {
     <form onSubmit={handleSubmit}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
-          <label>
-            Title
-            <input
-              type="text"
-              onChange={handleTitleChange}
-              value={userInput.title}
-            />
-          </label>
+          <label>Title</label>
+          <input
+            type="text"
+            onChange={handleTitleChange}
+            value={userInput.title}
+          />
         </div>
         <div className="new-expense__control">
-          <label>
-            Amount
-            <input
-              type="number"
-              onChange={handleAmountChange}
-              value={userInput.amount}
-            />
-          </label>
+          <label>Amount</label>
+          <input
+            type="number"
+            onChange={handleAmountChange}
+            value={userInput.amount}
+          />
         </div>
         <div className="new-expense__control">
-          <label>
-            Date
-            <input
-              type="date"
-              min="2019-01-01"
-              max="2022-12-31"
-              onChange={handleDateChange}
-              value={userInput.date}
-            />
-          </label>
+          <label>Date</label>
+          <input
+            type="date"
+            min="2019-01-01"
+            max="2022-12-31"
+            onChange={handleDateChange}
+            value={userInput.date}
+          />
         </div>
       </div>
       <div className="new-expense__actions">

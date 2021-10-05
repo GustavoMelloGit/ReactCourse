@@ -6,7 +6,7 @@ const NewExpense = (props) => {
   const saveExpenseData = (data) => {
     const expenseData = {
       ...data,
-      id: Math.ceil(Math.random()).toString(),
+      id: Math.ceil(Math.random() * 10).toString(),
     };
     props.onAddExpense(expenseData);
   };
