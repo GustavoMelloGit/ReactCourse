@@ -1,6 +1,9 @@
 .expenses-list {
     list-style: none;
-    padding: 0 !important;
+    padding: 0;
+    max-height: 40vh;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 .expenses-list__fallback {
     color: white;
