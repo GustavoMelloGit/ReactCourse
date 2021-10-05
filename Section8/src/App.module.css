@@ -1,0 +1,12 @@
+:root {
+    --button: #8b005d;
+    --card: #dedfe4;
+}
+.container {
+    width: 100%;
+    height: 100vh;
+    background-color: #161f21;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
