@@ -16,7 +16,7 @@ function App() {
       {users.length > 0 ? (
         <ListUser users={users} />
       ) : (
-        <p>No user registered</p>
+        <p className={styles.noUser}>No user registered</p>
       )}
     </div>
   );
