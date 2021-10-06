@@ -11,3 +11,7 @@
     flex-direction: column;
     overflow: hidden;
 }
+.container .noUser {
+    color: white;
+    font-size: 2rem;
+}
