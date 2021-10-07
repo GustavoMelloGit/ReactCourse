@@ -9,14 +9,22 @@ const CartContext = React.createContext({
 
 export const CartContextProvider = (props) => {
   const [items, setItems] = useState([]);
+
   function addItem(item, number) {
     setItems((prev) => {
       const updatedItems = [...prev];
       for (let i = 0; i < number; i++) updatedItems.push(item);
       return updatedItems;
     });
+    console.log(items);
   }
-  function removeItem(id) {}
+
+  function removeItem(id) {
+    items.forEach((item, index) => {
+      if (item.id === id) items.splice(index, 1);
+    });
+  }
+
   return (
     <CartContext.Provider
       value={{
