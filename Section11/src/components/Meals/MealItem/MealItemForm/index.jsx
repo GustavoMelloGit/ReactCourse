@@ -4,7 +4,7 @@ import Input from "../../../Input";
 
 export default function MealItemForm(props) {
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={props.handleAddToCart}>
       <Input
         label="Amount"
         input={{
@@ -13,10 +13,11 @@ export default function MealItemForm(props) {
           min: "1",
           max: "5",
           step: "1",
-          defaultValue: "1",
+          value: props.value,
+          onChange: props.handleChangeAmount,
         }}
       />
-      <button>+ Add</button>
+      <button type="submit">+ Add</button>
     </form>
   );
 }

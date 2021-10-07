@@ -37,6 +37,7 @@ export default function AvilableMeals() {
       price={meal.price}
       description={meal.description}
       id={meal.id}
+      item={meal}
     />
   ));
   return (

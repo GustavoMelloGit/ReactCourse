@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import CartContext from "../../../context/CartContext";
 import styles from "./MealItem.module.css";
 import MealItemForm from "./MealItemForm";
 
 export default function MealItem(props) {
+  const [value, setValue] = useState(1);
+  const cart = useContext(CartContext);
+
+  function handleAddToCart(e) {
+    e.preventDefault();
+    cart.addItem(props.item, value);
+  }
+
+  function handleChangeAmount(e) {
+    setValue(e.target.value);
+  }
+
   const price = `$${props.price}`;
   return (
     <li className={styles.meal}>
@@ -12,7 +25,12 @@ export default function MealItem(props) {
         <div className={styles.price}>{price}</div>
       </div>
       <div>
-        <MealItemForm id={props.id} />
+        <MealItemForm
+          handleAddToCart={handleAddToCart}
+          id={props.id}
+          handleChangeAmount={handleChangeAmount}
+          value={value}
+        />
       </div>
     </li>
   );
