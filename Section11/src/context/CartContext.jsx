@@ -16,7 +16,6 @@ export const CartContextProvider = (props) => {
       for (let i = 0; i < number; i++) updatedItems.push(item);
       return updatedItems;
     });
-    console.log(items);
   }
 
   function removeItem(id) {

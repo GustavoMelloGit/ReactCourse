@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     max-height: 20rem;
+    font-size: 1.4rem;
     overflow: auto;
 }
 
