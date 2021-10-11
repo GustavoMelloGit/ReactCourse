@@ -8,6 +8,7 @@ import Checkout from './Checkout.jsx';
 
 const Cart = (props) => {
   const [isCheckout, setIsCheckout] = useState(false);
+
   const cartCtx = useContext(CartContext);
 
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
@@ -23,6 +24,19 @@ const Cart = (props) => {
 
   const orderHandler = () => {
     setIsCheckout(true);
+  }
+
+  const submitOrderData = (userData) => {
+    fetch('https://reacthttp-82415-default-rtdb.firebaseio.com/orders.json', {
+      method: 'POST',
+      body: JSON.stringify({
+        user: userData,
+        orderedItems: cartCtx.items
+      })
+    }).then(() => {
+      alert("Order sent!");
+      cartCtx.clearCart();
+    })
   }
 
   const cartItems = (
@@ -47,7 +61,9 @@ const Cart = (props) => {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {isCheckout && <Checkout onCancel={props.onClose} />}
+      <div className={classes.checkout}>
+        {isCheckout && <Checkout onCancel={props.onClose} onSubmit={submitOrderData} />}
+      </div>
       {hasItems && !isCheckout &&
         <div className={classes.actions}>
           <button className={classes['button--alt']} onClick={props.onClose}>
