@@ -2,28 +2,42 @@ import { useEffect } from 'react';
 import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import Notification from './components/UI/Notification';
+import { fetchCartData, sendCartData } from './store/cart-actions';
+
+let isInitial = true;
 
 function App() {
+  const dispatch = useDispatch();
   const cartVisibility = useSelector(state => state.ui.cartOpen);
   const cart = useSelector(state => state.cart);
+  const statusBar = useSelector(state => state.ui.notification);
 
   useEffect(() => {
-    fetch('https://reacthttp-82415-default-rtdb.firebaseio.com/cart.json', {
-      method: 'PUT',
-      body: JSON.stringify(cart),
-    }).then(response => {
-      console.log(response.ok);
-    });
-  }, [cart]);
+    dispatch(fetchCartData())
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
+  }, [cart, dispatch]);
 
   return (
-    <Layout>
-      {cartVisibility &&
-        <Cart />
-      }
-      <Products />
-    </Layout>
+    <>
+      {statusBar && <Notification status={statusBar.status} title={statusBar.title} message={statusBar.message} />}
+      <Layout>
+        {cartVisibility &&
+          <Cart />
+        }
+        <Products />
+      </Layout>
+    </>
   );
 }
 
