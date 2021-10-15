@@ -16,6 +16,14 @@ const QuoteForm = (props) => {
     const enteredAuthor = authorInputRef.current.value;
     const enteredText = textInputRef.current.value;
 
+    if (enteredAuthor.trim().length === 0) {
+      alert('Please enter a valid author');
+      return;
+    }
+    if (enteredText.trim().length === 0) {
+      alert('Please enter a valid text');
+      return;
+    }
     // optional: Could validate here
 
     props.onAddQuote({ author: enteredAuthor, text: enteredText });
