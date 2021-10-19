@@ -1,11 +1,10 @@
-import { Dispatch, FormEvent, SetStateAction, useRef } from "react";
-import TodoModel from "../models/todo";
+import { FormEvent, useRef, useContext } from "react";
+import { TodoContext } from "../context/todo-context";
 import classes from "./NewTodo.module.css";
 
-const NewTodo: React.FC<{ addTodo: Dispatch<SetStateAction<TodoModel[]>> }> = (
-  props
-) => {
+const NewTodo: React.FC = () => {
   const todoText = useRef<HTMLInputElement>(null);
+  const todoCtx = useContext(TodoContext);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -18,10 +17,7 @@ const NewTodo: React.FC<{ addTodo: Dispatch<SetStateAction<TodoModel[]>> }> = (
     }
 
     //Adding todo
-    props.addTodo((prev) => [
-      ...prev,
-      { text: enteredText, id: new Date().toString() },
-    ]);
+    todoCtx.addTodo({ id: new Date().toString(), text: enteredText });
 
     //Reseting input
     todoText.current!.value = "";
